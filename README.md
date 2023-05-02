@@ -29,7 +29,7 @@ cd {root}/dataset/crosstask
 bash download.sh
 ```
 
-2. move your datasplit files and action one-hot coding file to `{root}/crosstask/crosstask_release/`
+2. move your datasplit files and action one-hot coding file to `{root}/dataset/crosstask/crosstask_release/`
 
 ```
 mv *.json crosstask_release
@@ -64,7 +64,7 @@ bash download.sh
 
 ------
 
-1. Train MLPs for task category prediction(By default,8 GPUs are used for training), you can modify the dataset, train steps, horizon(prediction length), json files savepath etc. in `args.py`
+1. Train MLPs for task category prediction(By default,8 GPUs are used for training), you can modify the dataset, train steps, horizon(prediction length), json files savepath etc. in `args.py`. 
 
 ```
 python train_mlp.py --multiprocessing-distributed --num_thread_reader=8 --cudnn_benchmark=1 --pin_memory --checkpoint_dir=whl --resume --batch_size=256 --batch_size_val=256 --evaluate
@@ -78,7 +78,7 @@ python train_mlp.py --multiprocessing-distributed --num_thread_reader=8 --cudnn_
 | COIN      | 1536                 | 778        | 180       |
 | NIV       | 1536                 | 48         | 5         |
 
-​	  The trained MLPs will be saved in `{root}/save_max_mlp` and json files will be generated. Then run `temp.py` to generate json files with predicted task class:
+​	  The trained MLPs will be saved in `{root}/save_max_mlp` and json files for training and testing data will be generated. Then run `temp.py` to generate json files with predicted task class for testing:
 
 ​	  Modify the checkpoint path(L86) and json file path(L111) in `temp.py` and run:
 
